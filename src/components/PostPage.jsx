@@ -127,56 +127,64 @@ const PostPage = () => {
         <div className="bg-gray-800 p-4 rounded-lg shadow-lg my-6 flex flex-col items-center w-full">
           <div
             ref={postRef}
-            className="w-full aspect-[1200/630] max-w-[1200px] mx-auto p-6 bg-gray-800 border border-gray-700 rounded-lg shadow-lg text-white overflow-hidden"
+            className="w-full aspect-[1200/630] max-w-[1200px] mx-auto p-4 sm:p-6 bg-gray-800 border border-gray-700 rounded-lg shadow-lg text-white overflow-hidden"
           >
-            <h3 className="text-xl font-bold mb-2">{title}</h3>
-            <p className="mb-4">{content}</p>
-            {image && (
-              <img
-                src={image}
-                alt="Post preview"
-                className="w-full h-[70%] rounded-lg object-cover mb-4"
-              />
-            )}
-            <div className="flex items-center space-x-6">
-              <button
-                onClick={handleLike}
-                className="flex items-center space-x-2 text-blue-500 hover:text-blue-600"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="w-5 h-5"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
+            <div className="h-full flex flex-col">
+              <div className="mb-2 sm:mb-4 flex-shrink-0">
+                <h3 className="text-lg sm:text-xl font-bold mb-1 sm:mb-2 line-clamp-1">
+                  {title}
+                </h3>
+                <p className="text-sm sm:text-base line-clamp-2">{content}</p>
+              </div>
+              {image && (
+                <div className="flex-grow mb-2 sm:mb-4 min-h-[100px]">
+                  <img
+                    src={image}
+                    alt="Post preview"
+                    className="w-full h-full rounded-lg object-cover"
+                  />
+                </div>
+              )}
+              <div className="flex items-center space-x-4 sm:space-x-6 text-sm sm:text-base flex-shrink-0">
+                <button
+                  onClick={handleLike}
+                  className="flex items-center space-x-1 sm:space-x-2 text-blue-500 hover:text-blue-600"
                 >
-                  <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
-                </svg>
-                <span>{likes}</span>
-              </button>
-              <button className="flex items-center space-x-2 text-gray-500 hover:text-gray-400">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="w-5 h-5"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M19 15l-7-7-7 7" />
-                </svg>
-                <span>Comment</span>
-              </button>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="w-4 h-4 sm:w-5 sm:h-5"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                  </svg>
+                  <span>{likes}</span>
+                </button>
+                <button className="flex items-center space-x-1 sm:space-x-2 text-gray-500 hover:text-gray-400">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="w-4 h-4 sm:w-5 sm:h-5"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M19 15l-7-7-7 7" />
+                  </svg>
+                  <span>Comment</span>
+                </button>
+              </div>
             </div>
           </div>
           <button
             onClick={handleGenerateOgImage}
-            className="w-full max-w-[1200px] py-2 bg-green-500 text-white font-bold rounded-lg hover:bg-green-600 mt-4"
+            className="w-full max-w-[1200px] py-2 bg-green-500 text-white font-bold rounded-lg hover:bg-green-600 mt-4 text-sm sm:text-base"
           >
             Generate og:image
           </button>
