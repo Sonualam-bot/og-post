@@ -22,8 +22,18 @@ const PostPage = () => {
     try {
       const dominantColor = await getColorFromURL(imageUrl);
 
-      const darkerColor = dominantColor.map((c) => Math.max(0, c - 50));
-      setBgColors([dominantColor, darkerColor]);
+      // Create a lighter version of the dominant color
+      const lighterColor = dominantColor.map((c) => Math.min(255, c + 50));
+
+      // Create a darker version of the dominant color
+      const darkerColor = dominantColor.map((c) => Math.max(0, c - 70));
+
+      // Add a third color for more gradient complexity
+      const middleColor = dominantColor.map((c, i) =>
+        Math.round((lighterColor[i] + darkerColor[i]) / 2)
+      );
+
+      setBgColors([lighterColor, middleColor, darkerColor]);
     } catch (error) {
       console.error("Error extracting colors:", error);
       setBgColors([]);
@@ -62,12 +72,12 @@ const PostPage = () => {
       postRef.current.style.transform = "scale(1)";
       postRef.current.style.transformOrigin = "top left";
 
-      if (bgColors.length === 2) {
-        const [color1, color2] = bgColors;
+      if (bgColors.length === 3) {
+        const [color1, color2, color3] = bgColors;
         postRef.current.style.background = `linear-gradient(135deg, 
-    rgb(${color1.join(",")}), 
-    rgb(${color1.map((c, i) => Math.round((c + color2[i]) / 2)).join(",")}), 
-    rgb(${color2.join(",")}))`;
+          rgb(${color1.join(",")}), 
+          rgb(${color2.join(",")}), 
+          rgb(${color3.join(",")}))`;
       }
 
       // measuring the content height
@@ -139,7 +149,7 @@ const PostPage = () => {
             />
           </div>
           <div className="mb-4">
-            <div className="flex-1  relative ">
+            <div className="flex-1 relative">
               <label htmlFor="image" className="block font-semibold mb-2">
                 Image (optional):
               </label>
@@ -181,14 +191,12 @@ const PostPage = () => {
               image ? "aspect-[1200/630]" : ""
             } max-w-[1200px] mx-auto p-6 bg-gray-800 border border-gray-700 rounded-lg shadow-lg text-white overflow-hidden`}
             style={
-              bgColors.length === 2
+              bgColors.length === 3
                 ? {
                     background: `linear-gradient(135deg, 
-      rgb(${bgColors[0].join(",")}), 
-      rgb(${bgColors[0]
-        .map((c, i) => Math.round((c + bgColors[1][i]) / 2))
-        .join(",")}), 
-      rgb(${bgColors[1].join(",")}))`,
+                      rgb(${bgColors[0].join(",")}), 
+                      rgb(${bgColors[1].join(",")}), 
+                      rgb(${bgColors[2].join(",")}))`,
                   }
                 : {}
             }
