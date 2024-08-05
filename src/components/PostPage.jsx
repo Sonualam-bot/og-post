@@ -187,10 +187,7 @@ const PostPage = () => {
         <div className="bg-gray-800 p-4 rounded-lg shadow-lg my-6 flex flex-col items-center w-full">
           <div
             ref={postRef}
-
-            className={`w-full ${
-              image ? "aspect-[1200/630]" : ""
-            } max-w-[1200px] mx-auto p-6 bg-gray-800 border border-gray-700 rounded-lg shadow-lg text-white overflow-hidden`}
+            className="w-full aspect-[1200/630] max-w-[1200px] mx-auto p-4 sm:p-6 bg-gray-800 border border-gray-700 rounded-lg shadow-lg text-white overflow-hidden"
             style={
               bgColors.length === 3
                 ? {
@@ -201,32 +198,6 @@ const PostPage = () => {
                   }
                 : {}
             }
-          >
-            <h3 className="text-xl font-bold mb-2">{title}</h3>
-            <p className="mb-4">{content}</p>
-            {image && (
-              <img
-                src={image}
-                alt="Post preview"
-                className="w-full h-[70%] rounded-lg object-center mb-4"
-              />
-            )}
-            <div className="flex items-center space-x-6">
-              <button
-                onClick={handleLike}
-                className="flex items-center space-x-2 text-blue-500 hover:text-blue-600"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="w-5 h-5"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-
-            className="w-full aspect-[1200/630] max-w-[1200px] mx-auto p-4 sm:p-6 bg-gray-800 border border-gray-700 rounded-lg shadow-lg text-white overflow-hidden"
           >
             <div className="h-full flex flex-col">
               <div className="mb-2 sm:mb-4 flex-shrink-0">
@@ -248,7 +219,6 @@ const PostPage = () => {
                 <button
                   onClick={handleLike}
                   className="flex items-center space-x-1 sm:space-x-2 text-blue-500 hover:text-blue-600"
-
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
